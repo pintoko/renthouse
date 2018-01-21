@@ -1,0 +1,61 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Daftar Pembayaran Rumah</h1>
+<pre>Tanggal hari ini: {{today}}</pre>
+<h3>Filter tanggal bayar</h3>
+<form class="form-horizontal" method="GET">
+  <div class="form-group">
+    <label for="year" class="col-sm-2 control-label">Tahun</label>
+    <div class="col-sm-10">
+      <select name="year" class="form-control" onchange="this.form.submit()">
+        {% for y in year_list %}
+          <option value="{{y}}" {{y == year ? 'selected':''}}>{{y}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="month" class="col-sm-2 control-label">Bulan</label>
+    <div class="col-sm-10">
+      <select name="month" class="form-control" onchange="this.form.submit()">
+        {% for key,m in month_list %}
+          <option value="{{key}}" {{key == month ? 'selected':''}}>{{m}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</form>
+<table class="table table-striped table-responsive">
+ <thead>
+   <tr>
+     <th>Nama Pelanggan</th>
+     <th>Rumah</th>
+     <th>Tanggal Bayar</th>
+     <th>Periode</th>
+     <th>Awal Sewa</th>
+     <th>Akhir Sewa</th>
+     <th>Harga</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ <tbody>
+ 	{% for sewa in sewas %}
+  {% set pembayaran = pembayarans[constant('Repository\\TransactionRepository::PREFIX')~sewa.id_pelanggan] %}
+   <tr class="{{pembayaran.tanggal_bayar == null ? 'danger' : ''}}">
+     <td>{{sewa.pelanggan}} ({{sewa.phone}})</td>
+     <td>{{sewa.rumah}}</td>
+     <td>{{pembayaran.tanggal_bayar}}</td>
+     <td>{{pembayaran.periode}}</td>
+     <td>{{pembayaran.awal}}</td>
+     <td>{{pembayaran.akhir}}</td>
+     <td>{{pembayaran.harga|price_format}}</td>
+     <td>
+      <a class="btn btn-success" href="/pembayaran/{{pembayaran.id}}/cetak" role="button">Cetak</a>
+      <a class="btn btn-primary" href="/pembayaran/{{pembayaran.id}}/edit" role="button">Ubah</a>
+      <a class="btn btn-danger" href="/pembayaran/{{pembayaran.id}}/hapus" role="button" onclick="return confirm('Hapus Pembayaran {{pembayaran.rumah}} - {{pembayaran.pelanggan}} ?');">x</a>
+    </td>
+   </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% endblock %}

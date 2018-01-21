@@ -1,0 +1,26 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Ubah Data Harga</h1>
+<pre>
+	{{dump(harga)}}
+</pre>
+<form method="POST">
+	<div class="form-group">
+		<label for="nama">Nama Harga</label>
+		<input type="text" value="{{harga.nama}}" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama">
+	</div>
+	<div class="form-group">
+		<label for="nominal">Nominal</label>
+		<input type="number" value="{{harga.nominal}}" name="nominal" class="form-control" id="nominal" placeholder="Masukkan Nominal Harga" step="100" min="300000" value="300000">
+	</div>
+	<div class="form-group">
+		<label for="periode">Periode</label>
+		<input type="text" value="{{harga.periode}}" name="periode" class="form-control" placeholder="Masukkan Periode">
+	</div>
+	<div class="form-group">
+		<input type="checkbox" name="is_active" id="is_active" {{harga.is_active ? 'checked':''}}>
+		<label for="is_active">Aktif</label>
+	</div>
+	<input class="btn btn-primary" type="submit" value="Simpan">
+</form>
+{% endblock %}

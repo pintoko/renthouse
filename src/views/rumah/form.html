@@ -1,0 +1,20 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Ubah Data Rumah</h1>
+<form method="POST">
+	<div class="form-group">
+		<label for="nama">Nama</label>
+		<input type="text" value="{{rumah.nama}}" name="nama" class="form-control" id="nama" aria-describedby="namaHelp" placeholder="Masukkan Nama">
+		<small id="namaHelp" class="form-text text-muted">Nama rumah kontrakan yang singkat padat jelas.</small>
+	</div>
+	<div class="form-group">
+		<label for="alamat">Alamat</label>
+		<textarea name="alamat" class="form-control" id="alamat" rows="3">{{rumah.alamat}}</textarea>
+	</div>
+	<div class="form-group">
+		<label for="nama">No PLN</label>
+		<input type="text" value="{{rumah.no_pln}}" name="no_pln" class="form-control" id="no_pln" placeholder="Masukkan No PLN">
+	</div>
+	<input class="btn btn-primary" type="submit" value="Simpan">
+</form>
+{% endblock %}

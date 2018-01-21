@@ -1,0 +1,18 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Konfirmasi Pembayaran Rumah</h1>
+<pre>Tanggal hari ini: {{today}}</pre>
+<form method="post" action="/bayar/{{id}}">
+	<ul class="list-group">
+		<li class="list-group-item">Nama Pelanggan: <b>{{sewa.pelanggan}}</b> ({{sewa.phone}}) (id: {{sewa.pid}})</li>
+		<li class="list-group-item">{{sewa.rumah}} (id: {{sewa.rid}})</li>
+		<li class="list-group-item">Nominal Bayar: {{sewa.nominal|price_format}} (id: {{sewa.hid}})</li>
+		<li class="list-group-item">Tanggal Bayar: <input type="text" class="datepicker" data-date-format="yyyy-mm-dd" name="tanggal_bayar" value="{{todayInput}}"></li>
+		<li class="list-group-item">Tanggal Pertama Masuk: {{sewa.awal|date_day}}</li>
+		<li class="list-group-item">Tanggal Awal Sewa: <input type="text" class="datepicker" data-date-format="yyyy-mm-dd" name="awal" value="{{awalSewa}}"></li>
+	</ul>
+	<input type="hidden" name="save" value="true">
+	<a href="/bayar" class="btn btn-danger" role="button">Tidak</a>
+	<input type="submit" class="btn btn-success" role="button" value="Iya">
+</form>
+{% endblock %}

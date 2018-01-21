@@ -1,9 +1,6 @@
 <?php
-// php -S localhost:8080
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
-
-require '../../vendor/autoload.php';
+require "../../vendor/autoload.php";
+error_reporting(E_ALL ^ E_NOTICE);
 
 $settings = require '../settings.php';
 

@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<style type="text/css">
+			body {
+			  background: rgb(204,204,204); 
+			}
+			page {
+			  background: white;
+			  display: block;
+			  padding: 0.5cm;
+			  margin: 0 auto;
+			  margin-bottom: 0.5cm;
+			  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+			}
+			page[size="A4"] {  
+			  width: 21cm;
+			  height: 29.7cm; 
+			}
+			page[size="A4"][layout="portrait"] {
+			  width: 29.7cm;
+			  height: 21cm;  
+			}
+			page[size="A3"] {
+			  width: 29.7cm;
+			  height: 42cm;
+			}
+			page[size="A3"][layout="portrait"] {
+			  width: 42cm;
+			  height: 29.7cm;  
+			}
+			page[size="A5"] {
+			  width: 14.8cm;
+			  height: 21cm;
+			}
+			page[size="A5"][layout="portrait"] {
+			  width: 21cm;
+			  height: 14.8cm;  
+			}
+			h2 {
+				margin: 0px;
+			}
+			@media print {
+			  body, page {
+			    margin: 0;
+			    box-shadow: 0;
+			  }
+			}
+		</style>
+		<title>Cetak</title>
+	</head>
+	<body>
+		<page size="A4">
+			<center>
+				<h2>Bukti Pembayaran</h2>
+				<span>No. {{today.year}}/{{today.mon}}/trx-id:{{pembayaran.id}}</span>
+			</center>
+			<hr/>
+			<table>
+				<tr>
+					<td width="20%"><b>Telah terima dari</b></td>
+					<td>{{pembayaran.gender}} {{pembayaran.pelanggan}}</td>
+				</tr>
+				<tr>
+					<td><b>Uang sebanyak</b></td>
+					<td>{{pembayaran.harga_words}}</td>
+				</tr>
+				<tr>
+					<td valign="top"><b>Untuk Pembayaran</b></td>
+					<td>
+						<p>Sewa Rumah <i>{{pembayaran.rumah}}</i> Bertempat di <i>{{pembayaran.alamat}}</i>.<br/>
+						Selama 1 Bulan, Sejak <i>{{pembayaran.awal}}</i> Sampai <i>{{pembayaran.akhir}}</i>.</p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><b>Tanggal Pembayaran</b></td>
+					<td>
+						{{pembayaran.tanggal_bayar}}
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>
+						<div style="text-align: right">
+							<p>Bekasi, {{today.mday}} {{today.month}} {{today.year}}</p>
+							<br><br><br>
+							<p>(............................................)</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><b>Jumlah</b></td>
+					<td>{{pembayaran.harga|price_format}}</td>
+				</tr>
+			</table>
+			<br>
+			<hr style="border-top: 1px dashed">
+		</page>
+		<!-- <page size="A4"></page>
+		<page size="A4" layout="portrait"></page>
+		<page size="A5"></page>
+		<page size="A5" layout="portrait"></page>
+		<page size="A3"></page>
+		<page size="A3" layout="portrait"></page> -->
+	</body>
+</html>

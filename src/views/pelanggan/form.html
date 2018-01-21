@@ -1,0 +1,43 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Data Pelanggan</h1>
+<!-- <pre>
+	{{dump(pelanggan)}}
+</pre> -->
+<form method="POST">
+	<div class="form-group">
+		<label for="nama">Nama</label>
+		<input type="text" value="{{pelanggan.nama}}" name="nama" class="form-control" id="nama" aria-describedby="namaHelp" placeholder="Masukkan Nama">
+		<small id="namaHelp" class="form-text text-muted">Nama pelanggan.</small>
+	</div>
+	<div class="form-group">
+		<label for="alamat">Jenis Kelamin</label>
+		<select name="gender" class="form-control">
+			{% for key,val in gender %}
+			<option value="{{key}}" {{pelanggan.gender == key ? 'selected': ''}}>{{val}}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="alamat">NIK</label>
+		<input type="text" value="{{pelanggan.nik}}" name="nik" class="form-control" placeholder="Masukkan NIK">
+	</div>
+	<div class="form-group">
+		<label for="alamat">Phone</label>
+		<input type="text" value="{{pelanggan.phone}}" name="phone" class="form-control" placeholder="Masukkan No. telpon">
+	</div>
+	<div class="form-group">
+		<label for="alamat">Pekerjaan</label>
+		<input type="text" value="{{pelanggan.pekerjaan}}" name="pekerjaan" class="form-control" placeholder="Masukkan Pekerjaan">
+	</div>
+	<div class="form-group">
+		<label for="alamat">Status</label>
+		<select name="status_active" class="form-control">
+			{% for key,val in status_active %}
+			<option value="{{key}}" {{pelanggan.status_active == key ? 'selected': ''}}>{{val}}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<input class="btn btn-primary" type="submit" value="Simpan">
+</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Konfirmasi Pembayaran Rumah</h1>
+<pre>Tanggal hari ini: {{today}}</pre>
+<form method="post" action="/pembayaran/{{id}}/edit">
+	<ul class="list-group">
+		<li class="list-group-item">Nama Pelanggan: <b>{{pembayaran.pelanggan}}</b> ({{pembayaran.phone}}) (id: {{pembayaran.pid}})</li>
+		<li class="list-group-item">{{pembayaran.rumah}} (id: {{pembayaran.rid}})</li>
+		<li class="list-group-item">Nominal Bayar: {{pembayaran.harga|price_format}}</li>
+		<li class="list-group-item">Tanggal Bayar: <input type="text" class="datepicker" name="tanggal_bayar" data-date-format="yyyy-mm-dd" value="{{pembayaran.tanggal_bayar}}"></li>
+		<li class="list-group-item">Tanggal Pertama Masuk: {{pembayaran.awal_sewa|date_day}}</li>
+		<li class="list-group-item">Tanggal Awal Sewa: <input type="text" class="datepicker" name="awal" data-date-format="yyyy-mm-dd" value="{{pembayaran.awal}}"></li>
+	</ul>
+	<input type="hidden" name="save" value="true">
+	<a href="/pembayaran" class="btn btn-danger" role="button">Tidak</a>
+	<input type="submit" class="btn btn-success" role="button" value="Iya">
+</form>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		'startDate': '{{awalSewa}}'
+	});
+</script>
+{% endblock %}

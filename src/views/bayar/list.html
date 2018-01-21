@@ -1,0 +1,27 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Daftar Penyewaan Rumah</h1>
+<pre>Tanggal hari ini: {{today}}</pre>
+<table class="table table-striped table-responsive">
+ <thead>
+   <tr>
+     <th>Rumah</th>
+     <th>Nama Pelanggan</th>
+     <th>Tanggal Mulai</th>
+     <th>Harga</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ <tbody>
+ 	{% for sewa in sewas %}
+   <tr>
+     <td>{{sewa.rumah}}</td>
+     <td>{{sewa.pelanggan}} ({{sewa.phone}})</td>
+     <td>{{sewa.awal|date_day}}</td>
+     <td>{{sewa.nominal|price_format}}</td>
+     <td><a class="btn btn-primary" href="/bayar/{{sewa.id}}" role="button">Bayar</a></td>
+   </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% endblock %}

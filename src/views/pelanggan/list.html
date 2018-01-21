@@ -1,0 +1,39 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class='page-header'>
+  <div class='btn-toolbar pull-right'>
+    <div class='btn-group'>
+      <a href="/pelanggan/baru" class='btn btn-success'>+ Tambah Pelanggan</a>
+    </div>
+  </div>
+  <h1>Daftar Pelanggan</h1>
+</div>
+<div class="row">
+  <table class="table">
+   <thead>
+     <tr>
+       <th>#</th>
+       <th>Nama Pelanggan</th>
+       <th>Phone</th>
+       <th>NIK</th>
+       <th>Pekerjaan</th>
+       <th>Status</th>
+       <th>Action</th>
+     </tr>
+   </thead>
+   <tbody>
+   	{% for pelanggan in pelanggans %}
+     <tr>
+       <th scope="row">{{pelanggan.id}}</th>
+       <td>{{pelanggan.nama}}</td>
+       <td>{{pelanggan.phone}}</td>
+       <td>{{pelanggan.nik}}</td>
+       <td>{{pelanggan.pekerjaan}}</td>
+       <td>{{pelanggan.status_active ? 'aktif' : 'tidak aktif'}}</td>
+       <td><a class="btn btn-primary" href="/pelanggan/{{pelanggan.id}}/edit" role="button">Ubah</a></td>
+     </tr>
+     {% endfor %}
+   </tbody>
+  </table>
+</div>
+{% endblock %}

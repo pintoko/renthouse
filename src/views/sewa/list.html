@@ -1,0 +1,41 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class='page-header'>
+  <div class='btn-toolbar pull-right'>
+    <div class='btn-group'>
+      <a href="/sewa/baru" class='btn btn-success'>+ Tambah Penyewaan</a>
+    </div>
+  </div>
+  <h1>Daftar Sewa Aktif</h1>
+</div>
+<div class="row">
+  <table class="table">
+   <thead>
+     <tr>
+       <th>#</th>
+       <th>Rumah</th>
+       <th>Pelanggan</th>
+       <th>Phone</th>
+       <th>Harga</th>
+       <th>Awal</th>
+       <th>Akhir</th>
+       <th>Action</th>
+     </tr>
+   </thead>
+   <tbody>
+   	{% for sewa in sewas %}
+     <tr>
+       <th scope="row">{{sewa.id}}</th>
+       <td>{{sewa.rumah}}</td>
+       <td>{{sewa.pelanggan}}</td>
+       <td>{{sewa.phone}}</td>
+       <td>{{sewa.nominal | price_format}}</td>
+       <td>{{sewa.awal}}</td>
+       <td>{{sewa.akhir}}</td>
+       <td><a class="btn btn-primary" href="/sewa/{{sewa.id}}/edit" role="button">Ubah</a></td>
+     </tr>
+     {% endfor %}
+   </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'app.html' %}
+{% block content %}
+<h1>Daftar Rumah</h1>
+<table class="table">
+ <thead>
+   <tr>
+     <th>#</th>
+     <th>Nama Rumah</th>
+     <th>Alamat</th>
+     <th>No. PLN</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ <tbody>
+ 	{% for rumah in rumahs %}
+   <tr>
+     <th scope="row">{{rumah.id}}</th>
+     <td>{{rumah.nama}}</td>
+     <td>{{rumah.alamat}}</td>
+     <td>{{rumah.no_pln}}</td>
+     <td><a class="btn btn-primary" href="/rumah/{{rumah.id}}/edit" role="button">Ubah Data</a></td>
+   </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% endblock %}

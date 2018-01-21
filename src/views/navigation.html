@@ -1,0 +1,31 @@
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">BayarKontrakan</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li {{menu == 'catat_pembayaran' ? 'class="active"' : ''}}><a href="/bayar">Catat Pembayaran</a></li>
+				<li {{menu == 'daftar_pembayaran' ? 'class="active"' : ''}}><a href="/pembayaran">Daftar Pembayaran</a></li>
+				<li class="dropdown {{dropdown_active ? 'active' : ''}}">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Data Utama<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li {{menu == 'rumah' ? 'class="active"' : ''}}><a href="/rumah">Rumah</a></li>
+						<li {{menu == 'pelanggan' ? 'class="active"' : ''}}><a href="/pelanggan">Pelanggan</a></li>
+						<li {{menu == 'harga' ? 'class="active"' : ''}}><a href="/harga">Harga</a></li>
+						<li {{menu == 'sewa' ? 'class="active"' : ''}}><a href="/sewa">Sewa</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

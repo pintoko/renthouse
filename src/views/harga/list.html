@@ -1,0 +1,33 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class='page-header'>
+  <div class='btn-toolbar pull-right'>
+    <div class='btn-group'>
+      <a href="/harga/baru" class='btn btn-success'>+ Tambah Harga</a>
+    </div>
+  </div>
+  <h1>Daftar Harga</h1>
+</div>
+<table class="table">
+ <thead>
+   <tr>
+     <th>#</th>
+     <th>Nama Harga</th>
+     <th>Nominal</th>
+     <th>Periode Bulan</th>
+     <th>Action</th>
+   </tr>
+ </thead>
+ <tbody>
+ 	{% for harga in hargas %}
+   <tr>
+     <th scope="row">{{harga.id}}</th>
+     <td>{{harga.nama}}</td>
+     <td>{{harga.nominal|price_format}}</td>
+     <td>{{harga.periode}}</td>
+     <td><a class="btn btn-primary" href="/harga/{{harga.id}}/edit" role="button">Ubah Data</a></td>
+   </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% endblock %}
